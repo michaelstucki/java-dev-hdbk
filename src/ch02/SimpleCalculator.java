@@ -28,7 +28,7 @@ public class SimpleCalculator {
                     }
                     break;
                 default:
-                    System.out.println(operation + " in not supported.");
+                    System.out.println(operation + " is not supported.");
             }
             if (valid) System.out.println(operand1 + " " + operation + " " + operand2 + " = " + result);
         }
