@@ -12,19 +12,25 @@ public class Main {
         // Manage account
         System.out.println("Bank Account Management");
         int option;
+        double amount;
         do {
             option = getOption(sc);
             switch (option) {
                 case 1: // deposit
+                    amount = getAmount(sc);
                     try {
-                        account.deposit(getAmount(sc));
+                        if (amount <= 0) throw new BalanceException("Non-positive amount");
+                        account.deposit(amount);
                     } catch (BalanceException e) {
                         System.out.println(e.getMessage());;
                     }
                     break;
                 case 2: // withdrawal
+                    amount = getAmount(sc);
                     try {
-                        account.withdraw(getAmount(sc));
+                        if (amount <= 0) throw new BalanceException("Non-positive amount");
+                        if (amount > account.getBalance()) throw new BalanceException("Amount exceeds balance");
+                        account.withdraw(amount);
                     } catch (BalanceException e) {
                         System.out.println(e.getMessage());
                     }
